@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CounterAudit</string>
+    <string name="save">Сохранить</string>
+    <string name="save_success">Показания сохранены</string>
+</resources>
