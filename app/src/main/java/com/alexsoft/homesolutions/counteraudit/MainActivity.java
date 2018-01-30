@@ -1,6 +1,7 @@
 package com.alexsoft.homesolutions.counteraudit;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -26,8 +29,10 @@ public class MainActivity extends AppCompatActivity{
     EditText npGasCounterFraction;
     Button buttonSave;
 
-    //private String directory = getFilesDir();
+    private static final String DIRECTORY = Environment.DIRECTORY_DOCUMENTS + "/Показания счетчиков/";//getFilesDir();
     private static final String FILENAME = "GasMeterReadings.csv";
+    private static final String FILEPATH = DIRECTORY + FILENAME;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,7 +93,18 @@ public class MainActivity extends AppCompatActivity{
 
         String result = "";
 
-        result = String.valueOf(npGasCounter5.getValue());
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String strDate = sdf.format(c.getTime());
+
+        result = strDate + ","
+            + String.valueOf(npGasCounter5.getValue())
+            + String.valueOf(npGasCounter4.getValue())
+            + String.valueOf(npGasCounter3.getValue())
+            + String.valueOf(npGasCounter2.getValue())
+            + String.valueOf(npGasCounter1.getValue())
+            + "." + npGasCounterFraction.getText()
+            + "\n";
         /*
         result.concat(String.valueOf(npGasCounter5.getValue()))
               .concat(String.valueOf(npGasCounter4.getValue()))
@@ -104,7 +120,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             // отрываем поток для записи
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
-                    openFileOutput(FILENAME, MODE_PRIVATE)));
+                    openFileOutput(FILEPATH, MODE_PRIVATE)));
             // пишем данные
             bw.write(record);
             // закрываем поток
