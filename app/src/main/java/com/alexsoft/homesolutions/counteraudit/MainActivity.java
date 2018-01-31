@@ -9,13 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
-import android.widget.QuickContactBadge;
 import android.widget.Toast;
 
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity{
     EditText npGasCounterFraction;
     Button buttonSave;
 
-    private static final String DIRECTORY = Environment.DIRECTORY_DOCUMENTS + "/Показания счетчиков/";//getFilesDir();
+    private static final String DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/Показания счетчиков/";
     private static final String FILENAME = "GasMeterReadings.csv";
     private static final String FILEPATH = DIRECTORY + FILENAME;
 
@@ -105,27 +103,17 @@ public class MainActivity extends AppCompatActivity{
             + String.valueOf(npGasCounter1.getValue())
             + "." + npGasCounterFraction.getText()
             + "\n";
-        /*
-        result.concat(String.valueOf(npGasCounter5.getValue()))
-              .concat(String.valueOf(npGasCounter4.getValue()))
-              .concat(String.valueOf(npGasCounter3.getValue()))
-              .concat(String.valueOf(npGasCounter2.getValue()))
-              .concat(String.valueOf(npGasCounter1.getValue()))
-              .concat("." + npGasCounterFraction.toString());
-        */
+
         return result;
     }
 
     private void writeFile(String record) {
         try {
-            // отрываем поток для записи
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
-                    openFileOutput(FILEPATH, MODE_PRIVATE)));
-            // пишем данные
-            bw.write(record);
-            // закрываем поток
-            bw.close();
-            //Log.d(LOG_TAG, "Файл записан");
+
+            FileWriter writer = new FileWriter(FILEPATH, true);
+            writer.write(record);
+            writer.flush();
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -134,6 +122,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void TestFilePathClick(View view) {
-        Toast.makeText(getApplicationContext(), getFileStreamPath(FILENAME).getAbsolutePath(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), getFileStreamPath(FILENAME).getAbsolutePath(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), FILEPATH, Toast.LENGTH_SHORT).show();
     }
 }
