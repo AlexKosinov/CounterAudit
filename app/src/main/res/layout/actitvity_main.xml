@@ -1,75 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:animateLayoutChanges="false">
+        android:layout_height="130dp"
+        android:animateLayoutChanges="false"
+        android:orientation="horizontal"
+        android:padding="2dp"
+        android:background="@android:color/holo_blue_light">
 
         <NumberPicker
             android:id="@+id/npGasCounter5"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             tools:text="1" />
 
         <NumberPicker
             android:id="@+id/npGasCounter4"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <NumberPicker
             android:id="@+id/npGasCounter3"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <NumberPicker
             android:id="@+id/npGasCounter2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <NumberPicker
             android:id="@+id/npGasCounter1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
-
-        <!--NumberPicker
-            android:id="@+id/npGasCounter01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_red_light"
-            android:layout_weight="1" />
-
-        <NumberPicker
-            android:id="@+id/npGasCounter02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/holo_red_light" />
-
-        <NumberPicker
-            android:id="@+id/npGasCounter03"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/holo_red_light" / !-->
 
         <EditText
             android:id="@+id/npGasCounterFraction"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="20"
+            android:layout_weight="3"
             android:background="@android:color/holo_red_light"
-            android:ems="10"
+            android:gravity="center"
             android:inputType="number"
+
             tools:text="123" />
 
     </LinearLayout>
@@ -80,9 +67,108 @@
         android:layout_height="wrap_content"
         android:text="@string/save" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:animateLayoutChanges="false"
+        android:orientation="horizontal">
+
+        <NumberPicker
+            android:id="@+id/npElectricCounter5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="1" />
+
+        <NumberPicker
+            android:id="@+id/npElectricCounter4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <NumberPicker
+            android:id="@+id/npElectricCounter3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <NumberPicker
+            android:id="@+id/npElectricCounter2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <NumberPicker
+            android:id="@+id/npElectricCounter1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <NumberPicker
+            android:id="@+id/npElectricCounter01"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_light"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:animateLayoutChanges="false"
+        android:orientation="horizontal"
+        android:padding="2dp"
+        android:background="@android:color/holo_blue_dark">
+
+        <NumberPicker
+            android:id="@+id/npWaterCounter5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="1"/>
+
+        <NumberPicker
+            android:id="@+id/npWaterCounter4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <NumberPicker
+            android:id="@+id/npWaterCounter3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <NumberPicker
+            android:id="@+id/npWaterCounter2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <NumberPicker
+            android:id="@+id/npWaterCounter1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <EditText
+            android:id="@+id/npWaterCounterFraction"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@android:color/holo_red_light"
+            android:gravity="center"
+            android:inputType="number"
+
+            tools:text="123" />
+
+    </LinearLayout>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="TestFilePathClick"/>
 
 </LinearLayout>
+</ScrollView>
