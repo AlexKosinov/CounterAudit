@@ -11,9 +11,11 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -121,8 +123,44 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    private void readFile() {
+        try {
+            File file = new File(FILEPATH);
+            String lastLine = ReadLastLine(file);
+            Toast.makeText(getApplicationContext(), lastLine.split(",")[1], Toast.LENGTH_SHORT).show();
+
+            String gasCounterValue = lastLine.split(",")[1];
+            npGasCounter5.setValue(Integer.parseInt(gasCounterValue.substring(0, 1)));
+            npGasCounter4.setValue(Integer.parseInt(gasCounterValue.substring(1, 2)));
+            npGasCounter3.setValue(Integer.parseInt(gasCounterValue.substring(2, 3)));
+            npGasCounter2.setValue(Integer.parseInt(gasCounterValue.substring(3, 4)));
+            npGasCounter1.setValue(Integer.parseInt(gasCounterValue.substring(4, 5)));
+            npGasCounterFraction.setText(gasCounterValue.subSequence(6, 9));
+
+        }
+        catch (Exception e) {
+        }
+    }
+
+    private static String ReadLastLine(File file) throws FileNotFoundException, IOException {
+        String result = null;
+        try (RandomAccessFile raf = new RandomAccessFile(file, "r")) {
+            long startIdx = file.length();
+            while (startIdx >= 0 && (result == null || result.length() == 0)) {
+                raf.seek(startIdx);
+                if (startIdx > 0)
+                    raf.readLine();
+                result = raf.readLine();
+                startIdx--;
+            }
+        }
+        return result;
+    }
+
     public void TestFilePathClick(View view) {
         //Toast.makeText(getApplicationContext(), getFileStreamPath(FILENAME).getAbsolutePath(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), FILEPATH, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), FILEPATH, Toast.LENGTH_SHORT).show();
+
+        readFile();
     }
 }
